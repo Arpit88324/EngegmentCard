@@ -41,7 +41,7 @@ export default function EnvelopeInvite() {
           A SACRED BEGINNING
         </span>
         <h2 className="mt-3 font-display text-4xl font-medium text-umber md:text-5xl">
-          Open Your Invitation
+          Open Our Engagement Invitation
         </h2>
       </div>
 

@@ -25,13 +25,13 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Anuja & Mayuresh — Wedding Invitation",
+  title: "Anuja & Mayuresh — Engagement Invitation",
   description:
-    "Join Anuja Wasnik and Mayuresh Saindane as they begin their journey together — 13th September, Rathode Lawn.",
+    "Join Anuja Wasnik and Mayuresh Saindane as we celebrate our engagement together — 13th September, Rathode Lawn.",
   openGraph: {
-    title: "Anuja & Mayuresh — Wedding Invitation",
+    title: "Anuja & Mayuresh — Engagement Invitation",
     description:
-      "Join Anuja Wasnik and Mayuresh Saindane as they begin their journey together — 13th September, Rathode Lawn.",
+      "Join Anuja Wasnik and Mayuresh Saindane as we celebrate our engagement together — 13th September, Rathode Lawn.",
     type: "website",
   },
 };

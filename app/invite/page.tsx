@@ -8,11 +8,11 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "You're Invited — Anuja & Mayuresh",
-  description: "13th September · Rathode Lawn. Open your invitation.",
+  description: "13th September · Rathode Lawn. Open our engagement invitation.",
 };
 
 /**
- * This route is the link printed on the physical wedding card / PDF.
+ * This route is the link shared for the engagement invitation.
  * It skips the loading screen so guests land directly in the invitation
  * experience the moment they tap the icon.
  */

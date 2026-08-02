@@ -53,7 +53,7 @@ export default function Hero() {
           variants={item}
           className="mt-6 font-display text-3xl italic text-umber/80 md:text-4xl"
         >
-          Wedding Invitation
+          Engagement Invitation
         </motion.h1>
 
         <motion.div
