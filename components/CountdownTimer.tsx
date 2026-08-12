@@ -78,13 +78,13 @@ export default function CountdownTimer() {
   }, []);
 
   return (
-    <section className="relative px-6 py-28">
+    <section className="relative px-6 py-12">
       <SectionHeading
         eyebrow="THE COUNTDOWN"
         title="Until We Say I Do"
       />
 
-      <div className="mx-auto mt-14 flex max-w-2xl flex-wrap items-center justify-center gap-8 md:gap-12">
+      <div className="mx-auto mt-8 flex max-w-2xl flex-wrap items-center justify-center gap-8 md:gap-12">
         {time ? (
           <>
             <CountRing value={time.days} max={365} label="Days" />

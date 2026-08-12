@@ -24,7 +24,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 text-center"
+      className="relative flex min-h-[60svh] flex-col items-center justify-center overflow-hidden px-6 py-16 text-center"
     >
       <div className="pointer-events-none absolute inset-0 bg-radial-glow" />
 
@@ -58,7 +58,7 @@ export default function Hero() {
 
         <motion.div
           variants={item}
-          className="mt-10 flex flex-col items-center gap-3 md:gap-4"
+          className="mt-6 flex flex-col items-center gap-3 md:gap-4"
         >
           <span className="text-shimmer font-display text-5xl font-medium leading-none md:text-7xl">
             {WEDDING.bride}
@@ -73,12 +73,12 @@ export default function Hero() {
 
         <motion.p
           variants={item}
-          className="mt-10 font-body text-sm tracking-[0.2em] text-ink/60 md:text-base"
+          className="mt-6 font-body text-sm tracking-[0.2em] text-ink/60 md:text-base"
         >
           {WEDDING.displayDate.toUpperCase()} &nbsp;·&nbsp; {WEDDING.venue.toUpperCase()}
         </motion.p>
 
-        <motion.div variants={item} className="mt-14 animate-float">
+        <motion.div variants={item} className="mt-8 animate-float">
           <a
             href="#invitation"
             className="font-eyebrow text-xs tracking-[0.3em] text-umber/60"

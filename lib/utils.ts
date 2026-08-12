@@ -12,8 +12,8 @@ export const WEDDING = {
   bride: "Anuja",
   groom: "Mayuresh",
   // Update the year below to the correct upcoming wedding year before deploying.
-  weddingDateISO: "2026-09-13T10:00:00+05:30",
-  displayDate: "13th September",
+  weddingDateISO: "2026-09-13T13:00:00+05:30",
+  displayDate: "13th September · 1:00 PM onwards",
   venue: "Rathode Lawn",
   venueAddress: "Rathode Lawn, Nagpur, Maharashtra",
   mapQuery: "Rathode Lawn, Nagpur, Maharashtra",

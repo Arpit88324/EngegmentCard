@@ -12,7 +12,7 @@ const rows = [
 
 export default function WeddingDetails() {
   return (
-    <section className="relative px-6 py-28">
+    <section className="relative px-6 py-12">
       <SectionHeading
         eyebrow="THE DETAILS"
         title="With Joyful Hearts"
@@ -24,7 +24,7 @@ export default function WeddingDetails() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="glass mx-auto mt-14 max-w-lg rounded-xl px-8 py-10 shadow-xl"
+        className="glass mx-auto mt-8 max-w-lg rounded-xl px-8 py-8 shadow-xl"
       >
         <ul className="divide-y divide-gold/15">
           {rows.map(({ icon: Icon, label, value }) => (
