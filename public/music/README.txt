@@ -1,9 +1,6 @@
-Add your ambient instrumental track here as:
+Place your background music MP3 here as:
 
-  ambient-theme.mp3
+  until-i-found-you.mp3
 
-The music toggle button (bottom-right of every page) looks for this exact
-file at /music/ambient-theme.mp3. Keep it short (60–120s) and loop-friendly,
-softly instrumental, and under a license you're cleared to use — it will
-loop for the whole visit. Recommended volume is already normalized low in
-hooks/useMusic.ts (0.35); adjust there if needed.
+Song requested: Until I Found You – Stephen Sanchez.
+The application will automatically load /music/until-i-found-you.mp3 (or fallback to YouTube audio stream) and play it continuously on loop.
