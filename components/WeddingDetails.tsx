@@ -1,13 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, CalendarDays, MapPin } from "lucide-react";
+import { CalendarDays, MapPin } from "lucide-react";
 import { WEDDING } from "@/lib/utils";
 import SectionHeading from "@/components/SectionHeading";
 
 const rows = [
-  { icon: Heart, label: "Bride", value: WEDDING.bride },
-  { icon: Heart, label: "Groom", value: WEDDING.groom },
   { icon: CalendarDays, label: "Date", value: WEDDING.displayDate },
   { icon: MapPin, label: "Venue", value: WEDDING.venue },
 ];

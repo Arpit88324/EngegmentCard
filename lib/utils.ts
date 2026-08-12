@@ -9,8 +9,8 @@ export function cn(...inputs: ClassValue[]) {
  * Central wedding data. Editing this file updates the entire site.
  */
 export const WEDDING = {
-  bride: "Anuja Wasnik",
-  groom: "Mayuresh Saindane",
+  bride: "Anuja",
+  groom: "Mayuresh",
   // Update the year below to the correct upcoming wedding year before deploying.
   weddingDateISO: "2026-09-13T10:00:00+05:30",
   displayDate: "13th September",
