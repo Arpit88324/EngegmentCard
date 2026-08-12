@@ -11,7 +11,7 @@ export default function Venue() {
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedQuery}`;
 
   return (
-    <section id="venue" className="relative px-6 py-12">
+    <section id="venue" className="relative px-6 py-6">
       <SectionHeading
         eyebrow="THE VENUE"
         title="Find Your Way to Us"
@@ -23,7 +23,7 @@ export default function Venue() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="glass mx-auto mt-8 max-w-3xl overflow-hidden rounded-2xl shadow-xl"
+        className="glass mx-auto mt-6 max-w-3xl overflow-hidden rounded-2xl shadow-xl"
       >
         <div className="aspect-video w-full">
           <iframe

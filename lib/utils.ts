@@ -14,9 +14,9 @@ export const WEDDING = {
   // Update the year below to the correct upcoming wedding year before deploying.
   weddingDateISO: "2026-09-13T13:00:00+05:30",
   displayDate: "13th September · 1:00 PM onwards",
-  venue: "Rathode Lawn",
-  venueAddress: "Rathode Lawn, Nagpur, Maharashtra",
-  mapQuery: "Rathode Lawn, Nagpur, Maharashtra",
+  venue: "Rathor Garden Lawn",
+  venueAddress: "Rathor Garden Lawn, Nagpur, Maharashtra",
+  mapQuery: "Rathor Garden Lawn, Nagpur, Maharashtra",
 };
 
 export function formatCountdownUnit(value: number) {

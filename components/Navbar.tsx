@@ -5,11 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const LINKS = [
-  { href: "#story", label: "Our Story" },
-  { href: "#sacred-symbols", label: "Sacred Symbols" },
+  { href: "#top", label: "Top" },
+  { href: "#countdown", label: "Countdown" },
   { href: "#venue", label: "Venue" },
-  { href: "#schedule", label: "Schedule" },
-  { href: "#rsvp", label: "RSVP" },
 ];
 
 export default function Navbar() {

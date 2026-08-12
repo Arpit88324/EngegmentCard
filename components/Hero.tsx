@@ -80,7 +80,7 @@ export default function Hero() {
 
         <motion.div variants={item} className="mt-8 animate-float">
           <a
-            href="#invitation"
+            href="#countdown"
             className="font-eyebrow text-xs tracking-[0.3em] text-umber/60"
           >
             SCROLL TO BEGIN
