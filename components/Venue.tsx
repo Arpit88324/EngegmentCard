@@ -15,7 +15,7 @@ export default function Venue() {
       <SectionHeading
         eyebrow="THE VENUE"
         title="Find Your Way to Us"
-        subtitle="The ceremony and celebration will take place at Rathode Lawn — we can't wait to welcome you."
+        subtitle="The ceremony and celebration will take place at Rathor Lawn — we can't wait to welcome you."
       />
 
       <motion.div
