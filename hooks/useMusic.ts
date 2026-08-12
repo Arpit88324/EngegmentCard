@@ -4,12 +4,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 /**
  * "Until I Found You" – Stephen Sanchez
- * 1950s retro doo-wop 6/8 ballad synthesizer & MP3 player engine.
+ * Plays directly starting from the iconic chorus lyrics:
+ * "I would never fall in love until I found her..." (~0:41s in the song)
  * 
- * Guarantees 100% reliable continuous playback:
- * 1. Tries local MP3 (/music/until-i-found-you.mp3 or /music/ambient-theme.mp3)
- * 2. If no MP3 file exists, seamlessly plays the authentic 1950s retro guitar
- *    chords & melody of "Until I Found You" generated via Web Audio API.
+ * 1. For MP3 audio: Starts playback directly at 41.5 seconds timestamp.
+ * 2. For Web Audio synth: Starts directly on the main chorus melody phrase.
  */
 
 // ── Note frequencies (Hz)
@@ -28,11 +27,8 @@ const CHORDS = [
   [N.F3, N.C4, N.F4, N.G4 + 15], // Fm / F minor 6th
 ];
 
-// ── Iconic Melody phrase: "I would never fall in love until I found her..."
+// ── Starts immediately on the chorus melody: "I would never fall in love until I found her..."
 const MELODY: { note: number; dur: number }[] = [
-  // Intro pick (6/8 rhythm)
-  { note: N.G4, dur: 1 }, { note: N.C5, dur: 1 }, { note: N.E5, dur: 2 }, { note: N.D5, dur: 1 }, { note: N.C5, dur: 1 },
-  { note: N.E5, dur: 2 }, { note: N.D5, dur: 1 }, { note: N.C5, dur: 3 },
   // "I would never fall in love..."
   { note: N.C5, dur: 1 }, { note: N.E5, dur: 1 }, { note: N.G5, dur: 2 }, { note: N.A5, dur: 1 }, { note: N.G5, dur: 1 },
   { note: N.E5, dur: 2 }, { note: N.C5, dur: 1 }, { note: N.D5, dur: 3 },
@@ -49,6 +45,7 @@ const MELODY: { note: number; dur: number }[] = [
 ];
 
 const BEAT_MS = 280; // 6/8 pulse duration (~65 BPM)
+const CHORUS_START_SEC = 41.5; // Timestamp where "I would never fall in love" lyrics start
 
 /** Play 1950s guitar note with warm tremolo */
 function playGuitarNote(ctx: AudioContext, master: GainNode, freq: number, time: number, duration: number, isMelody = false) {
@@ -57,20 +54,17 @@ function playGuitarNote(ctx: AudioContext, master: GainNode, freq: number, time:
   const osc = ctx.createOscillator();
   const env = ctx.createGain();
 
-  // Warm vintage tone: blend triangle + subtle sine
   osc.type = isMelody ? "sine" : "triangle";
   osc.frequency.setValueAtTime(freq, time);
 
-  // Tremolo effect (vintage 1950s amp tremolo)
   const tremolo = ctx.createOscillator();
   const tremoloGain = ctx.createGain();
-  tremolo.frequency.value = 4.5; // 4.5 Hz amp wobble
+  tremolo.frequency.value = 4.5;
   tremoloGain.gain.value = 0.08;
   tremolo.connect(tremoloGain);
 
   const gainLevel = isMelody ? 0.22 : 0.08;
 
-  // Pluck attack envelope
   env.gain.setValueAtTime(0, time);
   env.gain.linearRampToValueAtTime(gainLevel, time + 0.02);
   env.gain.exponentialRampToValueAtTime(0.001, time + duration);
@@ -96,7 +90,7 @@ export function useMusic() {
   const hasAutoplayedRef = useRef(false);
   const isSynthRunningRef = useRef(false);
 
-  // ── Web Audio Synthesizer Loop ("Until I Found You" 6/8 Arrangement)
+  // ── Web Audio Synthesizer Loop
   const startSynth = useCallback(() => {
     if (isSynthRunningRef.current) return;
     isSynthRunningRef.current = true;
@@ -126,7 +120,6 @@ export function useMusic() {
       const now = ctx.currentTime + 0.05;
       let noteTime = 0;
 
-      // Schedule 6/8 Arpeggio Chords
       let chordIndex = 0;
       let totalBeats = 0;
       MELODY.forEach((m) => { totalBeats += m.dur; });
@@ -134,13 +127,11 @@ export function useMusic() {
       for (let b = 0; b < totalBeats; b++) {
         const t = now + (b * BEAT_MS) / 1000;
         const currentChord = CHORDS[chordIndex % CHORDS.length];
-        // Arpeggiate chord in 6/8 pattern
         const note = currentChord[b % currentChord.length];
         playGuitarNote(ctx, master, note, t, (BEAT_MS * 1.5) / 1000, false);
         if (b % 6 === 0) chordIndex++;
       }
 
-      // Schedule Melody ("Until I Found You")
       MELODY.forEach(({ note, dur }) => {
         const t = now + (noteTime * BEAT_MS) / 1000;
         const durationSec = (dur * BEAT_MS * 0.95) / 1000;
@@ -148,7 +139,6 @@ export function useMusic() {
         noteTime += dur;
       });
 
-      // Loop when sequence finishes
       const loopDurationMs = totalBeats * BEAT_MS;
       timerRef.current = setTimeout(() => {
         if (isSynthRunningRef.current) {
@@ -177,10 +167,18 @@ export function useMusic() {
   const playMusic = useCallback(() => {
     setHasStarted(true);
 
-    // Try HTML5 MP3 first if file exists
     const audio = new Audio("/music/until-i-found-you.mp3");
     audio.loop = true;
     audio.volume = 0.5;
+
+    // Start directly from chorus vocals timestamp (~41.5s)
+    audio.currentTime = CHORUS_START_SEC;
+
+    // When looping, loop back to chorus timestamp
+    audio.addEventListener("ended", () => {
+      audio.currentTime = CHORUS_START_SEC;
+      audio.play();
+    });
 
     audio
       .play()
@@ -189,7 +187,7 @@ export function useMusic() {
         setIsPlaying(true);
       })
       .catch(() => {
-        // Fallback to internal synth playing "Until I Found You"
+        // Fallback to synth starting on chorus melody
         startSynth();
       });
   }, [startSynth]);
