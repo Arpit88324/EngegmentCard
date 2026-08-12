@@ -103,12 +103,12 @@ export function useMusic() {
       ctxRef.current = ctx;
       const master = ctx.createGain();
       master.gain.setValueAtTime(0, ctx.currentTime);
-      master.gain.linearRampToValueAtTime(0.65, ctx.currentTime + 1.5);
+      master.gain.linearRampToValueAtTime(0.25, ctx.currentTime + 1.5);
       master.connect(ctx.destination);
       masterGainRef.current = master;
     } else {
       ctxRef.current.resume();
-      masterGainRef.current?.gain.setValueAtTime(0.65, ctxRef.current.currentTime);
+      masterGainRef.current?.gain.setValueAtTime(0.25, ctxRef.current.currentTime);
     }
 
     const ctx = ctxRef.current;
@@ -169,7 +169,7 @@ export function useMusic() {
 
     const audio = new Audio("/music/until-i-found-you.mp3");
     audio.loop = true;
-    audio.volume = 0.5;
+    audio.volume = 0.25;
 
     // Start directly from chorus vocals timestamp (~41.5s)
     audio.currentTime = CHORUS_START_SEC;
