@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Navigation } from "lucide-react";
+import { MapPin, Navigation, Phone } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import { WEDDING } from "@/lib/utils";
 
@@ -44,6 +44,21 @@ export default function Venue() {
               <p className="font-display text-xl text-umber">{WEDDING.venue}</p>
               <p className="font-body text-sm text-ink/60">{WEDDING.venueAddress}</p>
             </div>
+          </div>
+
+          <div className="flex items-center gap-3 md:flex-col md:items-end md:gap-1">
+            <a
+              href="tel:+919975578837"
+              className="flex items-center gap-2 rounded-full border border-gold/30 px-4 py-2 font-body text-sm text-umber transition hover:border-gold hover:text-gold"
+            >
+              <Phone size={14} />
+              <span>
+                <span className="font-eyebrow text-[10px] tracking-[0.15em] text-umber/50 block">
+                  BRIDE&apos;S FATHER
+                </span>
+                Agasti Wasnik · 9975578837
+              </span>
+            </a>
           </div>
 
           <a
