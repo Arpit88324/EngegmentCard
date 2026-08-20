@@ -48,7 +48,9 @@ export default function VideoIntro({ onFinish }: VideoIntroProps) {
     return () => window.removeEventListener("keydown", handleKey);
   }, [dismiss]);
 
-  // Autoplay — browsers require muted for autoplay; playsInline for iOS
+  // Autoplay — wait for canplay event so the browser has enough data buffered
+  // before calling .play(). This is much more reliable on mobile than firing
+  // immediately on mount (which often races with video loading and gets blocked).
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -59,20 +61,31 @@ export default function VideoIntro({ onFinish }: VideoIntroProps) {
       return;
     }
 
-    video
-      .play()
-      .then(() => {
-        // Autoplay succeeded — hide tap overlay if it was shown
-        setNeedsTap(false);
-      })
-      .catch(() => {
-        // Autoplay was blocked (common on mobile) — show "Tap to Begin" overlay
-        setNeedsTap(true);
-      });
-
     const handleEnded = () => dismiss();
     video.addEventListener("ended", handleEnded);
-    return () => video.removeEventListener("ended", handleEnded);
+
+    // Attempt to play; if browser blocks it, wait for canplay then retry
+    const attemptPlay = () => {
+      video.play()
+        .then(() => setNeedsTap(false))
+        .catch(() => {
+          // Still blocked — show tap overlay as last resort
+          setNeedsTap(true);
+        });
+    };
+
+    if (video.readyState >= 3) {
+      // Already has enough data — play immediately
+      attemptPlay();
+    } else {
+      // Wait until the browser has buffered enough to start playing
+      video.addEventListener("canplay", attemptPlay, { once: true });
+    }
+
+    return () => {
+      video.removeEventListener("ended", handleEnded);
+      video.removeEventListener("canplay", attemptPlay);
+    };
   }, [dismiss, reducedMotion]);
 
   /** Called when user taps the "Tap to Begin" overlay on mobile */
