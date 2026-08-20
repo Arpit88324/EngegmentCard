@@ -46,7 +46,7 @@ export default function Venue() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 md:flex-col md:items-end md:gap-1">
+          <div className="flex flex-col items-center gap-2 md:items-end">
             <a
               href="tel:+919975578837"
               className="flex items-center gap-2 rounded-full border border-gold/30 px-4 py-2 font-body text-sm text-umber transition hover:border-gold hover:text-gold"
@@ -57,6 +57,18 @@ export default function Venue() {
                   BRIDE&apos;S FATHER
                 </span>
                 Agasti Wasnik · 9975578837
+              </span>
+            </a>
+            <a
+              href="tel:+919822499813"
+              className="flex items-center gap-2 rounded-full border border-gold/30 px-4 py-2 font-body text-sm text-umber transition hover:border-gold hover:text-gold"
+            >
+              <Phone size={14} />
+              <span>
+                <span className="font-eyebrow text-[10px] tracking-[0.15em] text-umber/50 block">
+                  GROOM&apos;S FATHER
+                </span>
+                Ashok Saindane · 9822499813
               </span>
             </a>
           </div>
